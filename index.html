@@ -43,9 +43,6 @@ button.lnk:hover{color:var(--warn)}
 .rec .srv{display:flex;align-items:center;gap:8px;margin:6px 0 0 30px;font:.8rem system-ui,sans-serif;color:var(--mute)}
 .rec .srv input{width:64px;padding:4px 6px;text-align:center}
 input[type=checkbox]{width:20px;height:20px;accent-color:var(--acc);flex:none}
-.r3{display:grid;grid-template-columns:1fr 70px 84px 28px;gap:6px;margin-bottom:6px}
-.r3.hd{font:600 .7rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin-bottom:2px}
-.r3 input,.r3 select{padding:7px 8px}
 .two{display:grid;grid-template-columns:1fr 90px;gap:8px;margin-bottom:12px}
 .it{display:flex;gap:10px;align-items:center;padding:5px 0}
 .it label{flex:1;cursor:pointer}
@@ -72,16 +69,24 @@ input[type=search]{width:100%;background:var(--bg);border:1px solid var(--line);
 #recs{max-height:440px;overflow-y:auto;padding-right:2px}
 .rec,.rec:last-child{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;background:var(--bg);transition:border-color .15s,background .15s}
 .rec.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 9%,var(--bg))}
-.r3,.r3.hd{grid-template-columns:minmax(0,1fr) 62px 76px 118px 28px}
 .pbar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
 .pbar i{display:block;height:100%;background:var(--acc);transition:width .25s}
 h3{display:flex;align-items:center;gap:6px;padding-bottom:4px;border-bottom:1px solid var(--line)}
 h3 .cnt{margin-left:auto;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:0 8px;font-size:.7rem;letter-spacing:0}
 .it{border-bottom:1px dashed var(--line)}.it:last-child{border:0}
 @media(min-width:761px){.grid>section.card{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}}
-@media(max-width:520px){.r3,.r3.hd{grid-template-columns:minmax(0,1fr) 62px 76px 28px}
-.r3 .typ{grid-column:1/4;grid-row:2}.r3>button{grid-column:4;grid-row:1}.r3.hd span:nth-child(4){display:none}}
 main{max-width:760px}
+/* Add-recipe ingredient rows: each ingredient is its own numbered card */
+#rows{counter-reset:ing}
+.r3{counter-increment:ing;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 32px;gap:8px 6px;
+ background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:10px 12px 12px;margin-bottom:14px}
+.r3::before{content:"Ingredient " counter(ing);grid-column:1/4;grid-row:1;align-self:center;font:600 .7rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+.r3>button{grid-column:4;grid-row:1;justify-self:end;padding:2px 8px}
+.r3 .ing{grid-column:1/5;grid-row:2;font-size:1.05rem;padding:11px 12px;background:var(--card)}
+.r3 input[type=number]{grid-column:1;grid-row:3;padding:8px;background:var(--card)}
+.r3 select{padding:8px 6px;background:var(--card)}
+.r3 select:not(.typ){grid-column:2;grid-row:3}
+.r3 select.typ{grid-column:3/5;grid-row:3}
 [hidden]{display:none!important}
 .tiles{display:grid;gap:14px;margin-top:8px}
 .tile{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:18px 20px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 2px rgba(60,50,30,.05),0 8px 24px rgba(60,50,30,.06);font:inherit;color:var(--ink)}
@@ -103,7 +108,7 @@ main{max-width:760px}
 <section id="v-home" class="tiles">
   <button class="tile" data-go="recipes"><span class="ti">🍽️</span><span><b>Choose recipes</b><small id="t1"></small></span></button>
   <button class="tile" data-go="list"><span class="ti">🛒</span><span><b>Grocery list</b><small id="t2"></small></span></button>
-  <button class="tile" data-go="list" data-focus="xitem"><span class="ti">🧴</span><span><b>Add an item</b><small>Toilet paper, dish soap, anything not in a recipe</small></span></button>
+  <button class="tile" data-go="list" data-focus="xitem"><span class="ti">🧴</span><span><b>Add an item</b><small>A single ingredient, toilet paper, dish soap, anything not in a recipe</small></span></button>
   <button class="tile" data-go="add"><span class="ti">➕</span><span><b>Add a recipe</b><small>Type one in, or import and export with Excel</small></span></button>
 </section>
 <section id="v-recipes" hidden>
@@ -126,9 +131,8 @@ main{max-width:760px}
 <section id="v-add" hidden>
 <div class="card">
       <h2 id="formTitle">Add a recipe</h2>
-      <div class="two"><input type="text" id="rname" placeholder="Recipe name"><input type="number" id="rserves" min="1" step="1" value="4" title="Serves" aria-label="Serves"></div>
-      <div class="r3 hd"><span>Ingredient</span><span>Amount</span><span>Unit</span><span>Type</span><span></span></div>
-      <div id="rows"></div>
+      <div class="two"><input type="text" id="rname" placeholder="Recipe name"><input type="number" id="rserves" min="1" step="1" value="2" title="Serves" aria-label="Serves"></div>
+            <div id="rows"></div>
       <div class="row"><button id="addrow">+ Add ingredient</button></div>
       <div class="row"><button class="pri" id="save">Save recipe</button><button id="cancel" hidden>Cancel</button></div>
       <p class="hint" id="smsg" role="status"></p>
@@ -205,7 +209,7 @@ function render(){
   <input type="checkbox" data-t="${r.id}" ${r.on?'checked':''} aria-label="Cook this week">
   <div class="nm">${esc(r.name)}</div>
   <button class="lnk" data-e="${r.id}">Edit</button><button class="lnk" data-d="${r.id}">✕</button></div>
-  <div class="srv">Cooking for <input type="number" min="1" step="1" value="${r.cook||r.serves}" data-s="${r.id}" aria-label="Servings"> (recipe serves ${r.serves})</div></div>`).join(''):`<p class="empty">${S.recipes.length?'No recipes match “'+esc($('q').value.trim())+'”.':'No recipes yet. Add one below.'}</p>`;
+  <div class="srv">Cooking for <input type="number" min="1" step="1" value="${r.cook||r.serves}" data-s="${r.id}" aria-label="Servings"></div></div>`).join(''):`<p class="empty">${S.recipes.length?'No recipes match “'+esc($('q').value.trim())+'”.':'No recipes yet. Add one below.'}</p>`;
  const items=build(),need=items.filter(i=>!S.have[i.k]),have=items.filter(i=>S.have[i.k]),g={};
  need.forEach(i=>(g[i.aisle]=g[i.aisle]||[]).push(i));
  const order=[...TYPES,...Object.keys(g).filter(k=>!TYPES.includes(k))].filter(a=>g[a]),done=need.filter(i=>S.checked[i.k]).length;
@@ -223,13 +227,13 @@ function render(){
 
 function addRow(r){r=r||{n:'',a:'',u:'unit'};
  const d=document.createElement('div');d.className='r3';
- d.innerHTML=`<input type="text" class="ing" autocomplete="off" placeholder="e.g. onion" value="${esc(r.n)}" aria-label="Ingredient">
- <input type="number" min="0" step="0.25" inputmode="decimal" value="${r.a===null?'':r.a}" aria-label="Amount">
+ d.innerHTML=`<input type="text" class="ing" autocomplete="off" placeholder="Ingredient, e.g. onion" value="${esc(r.n)}" aria-label="Ingredient">
+ <input type="number" min="0" step="0.25" inputmode="decimal" value="${r.a===null?'':r.a}" placeholder="Amount" aria-label="Amount">
  <select aria-label="Unit">${Object.keys(U).map(u=>`<option ${u===r.u?'selected':''}>${u}</option>`).join('')}</select>
  <select class="typ" aria-label="Type">${TYPES.map(t=>`<option ${t===(r.t||(r.n?aisle(norm(r.n)):'Other'))?'selected':''}>${esc(t)}</option>`).join('')}</select>
  <button class="lnk" aria-label="Remove row">✕</button>`;
  d.querySelector('button').onclick=()=>d.remove();$('rows').appendChild(d)}
-function resetForm(){editing=null;$('rname').value='';$('rserves').value=4;$('rows').innerHTML='';for(let i=0;i<4;i++)addRow();
+function resetForm(){editing=null;$('rname').value='';$('rserves').value=2;$('rows').innerHTML='';for(let i=0;i<4;i++)addRow();
  $('formTitle').textContent='Add a recipe';$('cancel').hidden=true}
 function readRows(){return[...$('rows').children].map(d=>{const i=d.querySelectorAll('input'),a=i[1].value;
  return{n:i[0].value.trim(),a:a===''?null:parseFloat(a),u:d.querySelector('select').value,t:d.querySelector('select.typ').value}}).filter(x=>x.n)}
