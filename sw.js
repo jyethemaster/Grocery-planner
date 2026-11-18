@@ -1,5 +1,5 @@
 // Offline cache for Weekly Grocery Planner. Bump VERSION after you update index.html.
-const VERSION = 'weekly-grocery-planner-v4';
+const VERSION = 'weekly-grocery-planner-v14';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
   'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js'];

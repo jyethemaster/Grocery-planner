@@ -87,7 +87,47 @@ main{max-width:760px}
 .r3 select{padding:8px 6px;background:var(--card)}
 .r3 select:not(.typ){grid-column:2;grid-row:3}
 .r3 select.typ{grid-column:3/5;grid-row:3}
+.pkrow{display:flex;gap:6px;align-items:center;margin-bottom:8px}.pkrow input{flex:1}
+.addside{display:inline-flex;align-items:center;gap:8px;margin-top:2px}
+.addside b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--acc);color:var(--accfg);font:700 1.1rem/1 system-ui,sans-serif}
 [hidden]{display:none!important}
+.it{flex-wrap:wrap}
+.it .nl{flex:1;min-width:0;cursor:pointer;font-size:1.02rem}
+.hv{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex:none;width:132px;margin:0}
+.hv input.hq{width:64px;padding:5px 8px;border-radius:8px}
+.hv select{width:62px;padding:5px 4px}
+.colhead{display:flex;justify-content:flex-end;margin:0 0 2px}
+.colhead span{width:132px;text-align:center;font:600 .7rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.r2{flex-basis:100%;display:flex;align-items:center;gap:8px;margin:0 0 4px 30px}
+.bl{flex:1;min-width:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bl .qb{background:var(--acc);color:var(--accfg);font:700 1rem system-ui,sans-serif;padding:3px 13px;border-radius:999px;white-space:nowrap}
+.bl .qb.cov{background:none;border:1px solid var(--line);color:var(--mute);font-weight:600;font-size:.85rem}
+.bl .qs{font:.78rem system-ui,sans-serif;color:var(--mute)}
+.it.done .qb{background:var(--line);color:var(--mute);text-decoration:line-through}
+.tag{display:inline-block;margin-left:6px;padding:0 8px;border-radius:999px;border:1px solid var(--line);font:600 .65rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);vertical-align:middle}
+.chips{display:flex;gap:6px;margin:10px 0 0;flex-wrap:wrap}
+.chips button{padding:4px 12px}
+.chips button.on{background:var(--acc);color:var(--accfg);border-color:var(--acc)}
+.fi{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);cursor:pointer}
+.fi:last-child{border:0}
+#fridge{max-height:46vh;overflow-y:auto;margin-top:10px;padding-right:2px}
+.fhead{display:flex;align-items:center;gap:8px;margin-top:8px}.fhead .hint{flex:1;margin:0}
+.fm{margin:6px 0 6px;font:.8rem system-ui,sans-serif;color:var(--mute)}
+.mdesc{margin:4px 0 0 30px;font:.85rem system-ui,sans-serif;color:var(--mute)}
+.kindrow{display:flex;align-items:center;gap:10px;margin:-4px 0 12px;font:.85rem system-ui,sans-serif;color:var(--mute)}.kindrow select{width:auto}
+.day{border:1px solid var(--line);border-radius:12px;background:var(--bg);margin:0 0 8px;padding:0}
+.day[open]{border-color:var(--acc)}
+.day summary{list-style:none;cursor:pointer;display:flex;gap:10px;align-items:baseline;padding:12px 14px;color:var(--ink)}
+.day summary::-webkit-details-marker{display:none}
+.day summary b{min-width:92px;font-weight:600}
+.day .dsum{flex:1;min-width:0;font:.85rem system-ui,sans-serif;color:var(--mute)}
+.day.set .dsum{color:var(--ink)}
+.day summary::after{content:"›";color:var(--mute);font-size:1.4rem;line-height:1;transform:rotate(90deg)}
+.day[open] summary::after{transform:rotate(-90deg)}
+.dbody{padding:0 14px 14px}
+.sc{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:2px 4px 2px 12px;margin:0 6px 8px 0;font:.85rem system-ui,sans-serif}
+.dbody .srv{margin:12px 0 0}
+.dbody .row{margin-top:8px}
 .tiles{display:grid;gap:14px;margin-top:8px}
 .tile{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:18px 20px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 2px rgba(60,50,30,.05),0 8px 24px rgba(60,50,30,.06);font:inherit;color:var(--ink)}
 .tile:hover{border-color:var(--acc)}
@@ -98,6 +138,13 @@ main{max-width:760px}
 #crumb{margin:0 0 12px}
 .xadd{display:grid;grid-template-columns:minmax(0,1fr) 62px 76px 118px auto;gap:6px;margin:0 0 12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 @media(max-width:520px){.xadd{grid-template-columns:62px 76px minmax(0,1fr)}.xadd #xitem,.xadd button{grid-column:1/-1}}
+.rec details{margin:8px 0 0 30px;font:.85rem system-ui,sans-serif}
+.rec summary{color:var(--acc);font-weight:600}
+.rec .meta{margin:8px 0 2px;color:var(--mute);font:.8rem system-ui,sans-serif}
+.ings{margin:4px 0 0;padding:0;list-style:none;font:.95rem system-ui,sans-serif}
+.ings li{display:flex;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.ings li:last-child{border:0}
+.ings .qa{min-width:72px;color:var(--mute);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -106,13 +153,42 @@ main{max-width:760px}
 <p class="sub">Tick the recipes you’re cooking, set how many you’re feeding, and your shopping list builds itself.</p>
 <nav id="crumb" hidden><button data-go="home">← Back to menu</button></nav>
 <section id="v-home" class="tiles">
-  <button class="tile" data-go="recipes"><span class="ti">🍽️</span><span><b>Choose recipes</b><small id="t1"></small></span></button>
   <button class="tile" data-go="list"><span class="ti">🛒</span><span><b>Grocery list</b><small id="t2"></small></span></button>
+  <button class="tile" data-go="plan"><span class="ti">📅</span><span><b>Plan meals for the week</b><small id="t3"></small></span></button>
   <button class="tile" data-go="list" data-focus="xitem"><span class="ti">🧴</span><span><b>Add an item</b><small>A single ingredient, toilet paper, dish soap, anything not in a recipe</small></span></button>
+  <button class="tile" data-go="fridge"><span class="ti">🧊</span><span><b>What’s in my fridge</b><small id="t4"></small></span></button>
+  <button class="tile" data-go="next"><span class="ti">💡</span><span><b>What else could I cook?</b><small id="t5">See what this week’s shopping could also make</small></span></button>
+  <button class="tile" data-go="recipes"><span class="ti">🍽️</span><span><b>Recipes</b><small id="t1"></small></span></button>
   <button class="tile" data-go="add"><span class="ti">➕</span><span><b>Add a recipe</b><small>Type one in, or import and export with Excel</small></span></button>
 </section>
 <section id="v-recipes" hidden>
-<div class="card"><h2>This week’s recipes</h2><input type="search" id="q" placeholder="Search recipes or ingredients" aria-label="Search recipes"><p class="hint" id="qcount"></p><div id="recs"></div></div>
+<div class="card"><h2>Recipes</h2><input type="search" id="q" placeholder="Search recipes or ingredients" aria-label="Search recipes"><div class="chips" id="kfs"><button data-kf="all">All</button><button data-kf="main">Main dishes</button><button data-kf="side">Side dishes</button></div><p class="hint" id="qcount"></p><div id="recs"></div></div>
+</section>
+<section id="v-plan" hidden>
+<div class="card">
+  <h2>Plan meals for the week</h2>
+  <p class="hint">Only fill in the days you want to shop for. Each day takes one main dish and as many sides as you like, and every planned day goes straight onto your grocery list.</p>
+  <div id="days"></div>
+  <div class="row"><button id="pclear">Clear the week</button></div>
+</div>
+</section>
+<section id="v-fridge" hidden>
+<div class="card">
+  <h2>What’s in my fridge</h2>
+  <input type="search" id="fq" placeholder="Search ingredients" aria-label="Search ingredients">
+  <div class="fhead"><p class="hint" id="fcount"></p><button id="fclear">Clear all</button></div>
+  <div id="fridge"></div>
+</div>
+<div class="card"><h2>Best matches</h2><div id="fres"></div></div>
+</section>
+<section id="v-next" hidden>
+<div class="card">
+  <h2>What you’ll have after shopping</h2>
+  <p class="hint">A look ahead. Everything in the recipes you’ve ticked or planned, plus anything you’ve ticked in the fridge or marked as “Have it”, counts as in your kitchen.</p>
+  <p class="hint" id="nsum"></p>
+  <div id="nbox"></div>
+</div>
+<div class="card"><h2>Other recipes you could make</h2><div id="nres"></div></div>
 </section>
 <section class="card" id="v-list" hidden>
     <h2>Grocery list</h2>
@@ -132,6 +208,7 @@ main{max-width:760px}
 <div class="card">
       <h2 id="formTitle">Add a recipe</h2>
       <div class="two"><input type="text" id="rname" placeholder="Recipe name"><input type="number" id="rserves" min="1" step="1" value="2" title="Serves" aria-label="Serves"></div>
+      <div class="kindrow"><label for="rkind">Dish type</label><select id="rkind"><option value="main">Main dish</option><option value="side">Side dish</option></select></div>
             <div id="rows"></div>
       <div class="row"><button id="addrow">+ Add ingredient</button></div>
       <div class="row"><button class="pri" id="save">Save recipe</button><button id="cancel" hidden>Cancel</button></div>
@@ -171,25 +248,30 @@ const $=id=>document.getElementById(id);
 const r2=x=>Math.round(x*100)/100;
 const norm=s=>s.toLowerCase().replace(/\s+/g,' ').trim();
 
-let S={recipes:[],extras:[],checked:{},have:{}},editing=null;
+let S={recipes:[],extras:[],checked:{},have:{},fridge:{},plan:{},haveQty:{}},editing=null;
 const SAMPLES=[
-{id:'a1',name:'Chicken & rice bowls',serves:2,cook:4,on:true,rows:[{n:'chicken thighs',a:500,u:'g'},{n:'rice',a:200,u:'g'},{n:'onion',a:1,u:'unit'},{n:'soy sauce',a:2,u:'tbsp'},{n:'olive oil',a:1,u:'tbsp'}]},
-{id:'a2',name:'Garlic pasta',serves:2,cook:2,on:true,rows:[{n:'pasta',a:250,u:'g'},{n:'garlic',a:4,u:'unit'},{n:'olive oil',a:2,u:'tbsp'},{n:'onion',a:0.5,u:'unit'},{n:'parmesan',a:50,u:'g'}]}];
+{id:'a1',name:'Chicken & rice bowls',serves:2,cook:4,kind:'main',on:true,rows:[{n:'chicken thighs',a:500,u:'g'},{n:'rice',a:200,u:'g'},{n:'onion',a:1,u:'unit'},{n:'soy sauce',a:2,u:'tbsp'},{n:'olive oil',a:1,u:'tbsp'}]},
+{id:'a2',name:'Garlic pasta',serves:2,cook:2,kind:'main',on:true,rows:[{n:'pasta',a:250,u:'g'},{n:'garlic',a:4,u:'unit'},{n:'olive oil',a:2,u:'tbsp'},{n:'onion',a:0.5,u:'unit'},{n:'parmesan',a:50,u:'g'}]},
+{id:'a3',name:'Green salad',serves:2,cook:2,kind:'side',on:false,rows:[{n:'lettuce',a:1,u:'unit'},{n:'cucumber',a:1,u:'unit'},{n:'tomato',a:2,u:'unit'},{n:'olive oil',a:1,u:'tbsp'}]},
+{id:'a4',name:'Steamed rice',serves:2,cook:2,kind:'side',on:false,rows:[{n:'rice',a:150,u:'g'}]}];
 const KEY='weekly-grocery-planner:state';
-function load(){try{const r=localStorage.getItem(KEY)||localStorage.getItem('gp2-state');if(r){S=JSON.parse(r);S.extras=S.extras||[];return}}catch(e){}S.recipes=JSON.parse(JSON.stringify(SAMPLES))}
+function load(){try{const r=localStorage.getItem(KEY)||localStorage.getItem('gp2-state');if(r){S=JSON.parse(r);S.extras=S.extras||[];S.fridge=S.fridge||{};S.plan=S.plan||{};S.haveQty=S.haveQty||{};delete S.meals;return}}catch(e){}S.recipes=JSON.parse(JSON.stringify(SAMPLES))}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 function build(){
- const m={};
- [...S.recipes.filter(r=>r.on),{id:'extras',serves:1,cook:1,rows:S.extras}].forEach(r=>{
-  const f=(r.cook||r.serves)/r.serves;
+ const m={},parts=S.recipes.filter(r=>r.on).map(r=>({r,c:r.cook||r.serves}));
+ DAYS.forEach(([k])=>{const x=S.plan[k];if(x)[x.main,...(x.sides||[])].forEach(id=>{const r=id&&S.recipes.find(y=>y.id===id);if(r)parts.push({r,c:x.cook||2})})});
+ parts.push({r:{id:'extras',serves:1,rows:S.extras},c:1});
+ parts.forEach(({r,c})=>{
+  const f=c/r.serves;
   r.rows.forEach(x=>{const n=norm(x.n);if(!n)return;
    const [fam,mul]=U[x.u];const k=n+'|'+fam;
    const o=m[k]||(m[k]={k,name:n,fam,base:null,spoon:true,from:[]});if(x.t&&!o.t)o.t=x.t;
    if(x.a!==null&&x.a!==''&&!isNaN(x.a)){o.base=(o.base||0)+x.a*mul*f;if(x.u!=='tsp'&&x.u!=='tbsp')o.spoon=false}
    else o.spoon=false;
    if(r.id==='extras')o.ex=true;else if(!o.from.includes(r.name))o.from.push(r.name)})});
- return Object.values(m).map(o=>({...o,aisle:o.t||aisle(o.name),qty:fmtQty(o)}))}
+ return Object.values(m).map(o=>{const hq=S.haveQty[o.k],hb=o.base!==null&&hq&&hq.v>0&&U[hq.u]&&U[hq.u][0]===o.fam?hq.v*U[hq.u][1]:0,rem=o.base===null?null:Math.max(0,o.base-hb);
+  return{...o,aisle:o.t||aisle(o.name),total:fmtQty(o),haveB:hb,covered:hb>0&&rem<=1e-6,qty:o.base===null?'':fmtQty({...o,base:rem})}})}
 function fmtQty(o){
  if(o.base===null)return'';
  const b=o.base;
@@ -200,29 +282,42 @@ function fmtQty(o){
   const t=Math.round(b/5),tb=Math.floor(t/3),ts=t%3;
   return [tb?tb+' tbsp':'',ts?ts+' tsp':''].filter(Boolean).join(' + ')}
  return r2(b)+' ml'}
-const label=i=>`${esc(i.name)} <span class="q">${i.qty}${i.from.length>1?' · '+i.from.length+' recipes':''}</span>`;
+const UOPT={w:['g','kg'],v:['ml','l','tbsp','tsp'],u:[]};
+const defU=i=>i.fam==='w'?'g':i.fam==='v'?(i.spoon?'tbsp':'ml'):'unit';
+const lwInner=i=>{
+ const sub=[i.haveB>0?(i.covered?'needed '+i.total:'needed of '+i.total):'',i.from.length>1?i.from.length+' recipes':''].filter(Boolean).join(' · ');
+ const badge=i.covered?'<span class="qb cov">✓ covered</span>':(i.qty?`<span class="qb">${esc(i.qty)}</span>`:'');
+ return `${badge}${sub?`<span class="qs">${sub}</span>`:''}`};
+const hbox=i=>{if(i.base===null)return'';const hq=S.haveQty[i.k]||{},u=hq.u||defU(i),o=UOPT[i.fam];
+ return `<div class="hv"><input type="text" inputmode="decimal" class="hq" data-hq="${esc(i.k)}" value="${hq.v>0?hq.v:''}" placeholder="0" autocomplete="off" aria-label="Amount of ${esc(i.name)} you already have">${o.length?`<select data-hu="${esc(i.k)}" aria-label="Unit">${o.map(x=>`<option ${x===u?'selected':''}>${x}</option>`).join('')}</select>`:''}</div>`}
 
 function render(){
- const qv=norm($('q').value),shown=S.recipes.filter(r=>!qv||norm(r.name).includes(qv)||r.rows.some(x=>norm(x.n).includes(qv)));
- $('qcount').textContent=qv?`Showing ${shown.length} of ${S.recipes.length}`:`${S.recipes.filter(r=>r.on).length} of ${S.recipes.length} ticked for this week`;
+ const qv=norm($('q').value),shown=S.recipes.filter(r=>(kf==='all'||kindOf(r)===kf)&&(!qv||norm(r.name).includes(qv)||r.rows.some(x=>norm(x.n).includes(qv))));
+ [...$('kfs').children].forEach(b=>b.classList.toggle('on',b.dataset.kf===kf));
+ $('qcount').textContent=(qv||kf!=='all')?`Showing ${shown.length} of ${S.recipes.length}`:`${S.recipes.filter(r=>r.on).length} of ${S.recipes.length} ticked for this week`;
  $('recs').innerHTML=shown.length?shown.map(r=>`<div class="rec${r.on?' on':''}"><div class="top">
   <input type="checkbox" data-t="${r.id}" ${r.on?'checked':''} aria-label="Cook this week">
-  <div class="nm">${esc(r.name)}</div>
+  <div class="nm">${esc(r.name)}<span class="tag">${kindOf(r)==='side'?'Side':'Main'}</span></div>
   <button class="lnk" data-e="${r.id}">Edit</button><button class="lnk" data-d="${r.id}">✕</button></div>
-  <div class="srv">Cooking for <input type="number" min="1" step="1" value="${r.cook||r.serves}" data-s="${r.id}" aria-label="Servings"></div></div>`).join(''):`<p class="empty">${S.recipes.length?'No recipes match “'+esc($('q').value.trim())+'”.':'No recipes yet. Add one below.'}</p>`;
- const items=build(),need=items.filter(i=>!S.have[i.k]),have=items.filter(i=>S.have[i.k]),g={};
+  <div class="srv">Cooking for <input type="number" min="1" step="1" value="${r.cook||r.serves}" data-s="${r.id}" aria-label="Servings"></div>
+  <details data-rd="${r.id}" ${rOpen[r.id]?'open':''}><summary>Read recipe · ${r.rows.length} ingredient${r.rows.length===1?'':'s'}</summary>
+  <p class="meta">Serves ${r.serves}${r.cook&&r.cook!==r.serves?' · amounts below are for '+r.serves:''}</p>
+  <ul class="ings">${r.rows.map(x=>`<li><span class="qa">${x.a===null||x.a===''||isNaN(x.a)?'':r2(x.a)+(x.u==='unit'?'':' '+x.u)}</span><span>${esc(x.n)}</span></li>`).join('')}</ul></details></div>`).join(''):`<p class="empty">${S.recipes.length?'No recipes match'+(qv?' “'+esc($('q').value.trim())+'”':' this filter')+'.':'No recipes yet. Add one below.'}</p>`;
+ const items=build(),need=items.filter(i=>!S.have[i.k]&&!i.covered),have=items.filter(i=>S.have[i.k]||i.covered),g={};
  need.forEach(i=>(g[i.aisle]=g[i.aisle]||[]).push(i));
  const order=[...TYPES,...Object.keys(g).filter(k=>!TYPES.includes(k))].filter(a=>g[a]),done=need.filter(i=>S.checked[i.k]).length;
  $('prog').innerHTML=need.length?`<div class="pbar"><i style="width:${Math.round(done/need.length*100)}%"></i></div><p class="hint">${done} of ${need.length} items bought</p>`:'';
  $('t1').textContent=`${S.recipes.filter(r=>r.on).length} of ${S.recipes.length} ticked for this week`;
  $('t2').textContent=need.length?`${need.length-done} of ${need.length} items still to buy`:(have.length?'Nothing to buy. You have it all!':'Tick a recipe or add an item to build your list');
- $('list').innerHTML=order.length?order.map(a=>`<h3>${ICON[a]||'🛒'} ${esc(a)} <span class="cnt">${g[a].length}</span></h3>`+g[a].sort((x,y)=>x.name.localeCompare(y.name)).map(i=>{
+ $('list').innerHTML=order.length?'<div class="colhead"><span>Already have</span></div>'+order.map(a=>`<h3>${ICON[a]||'🛒'} ${esc(a)} <span class="cnt">${g[a].length}</span></h3>`+g[a].sort((x,y)=>x.name.localeCompare(y.name)).map(i=>{
   const d=S.checked[i.k];
   return `<div class="it ${d?'done':''}"><input type="checkbox" id="c_${esc(i.k)}" data-c="${esc(i.k)}" ${d?'checked':''}>
-  <label for="c_${esc(i.k)}">${label(i)}</label><button class="lnk" data-h="${esc(i.k)}" title="I already have this">Have it</button>${i.ex?`<button class="lnk" data-xr="${esc(i.k)}" title="Remove this added item" aria-label="Remove">✕</button>`:''}</div>`}).join('')).join(''):
+  <label class="nl" for="c_${esc(i.k)}">${esc(i.name)}</label>${hbox(i)}
+  <div class="r2"><label class="bl" for="c_${esc(i.k)}" data-lq="${esc(i.k)}">${lwInner(i)}</label><button class="lnk" data-h="${esc(i.k)}" title="I already have this">Have it</button>${i.ex?`<button class="lnk" data-xr="${esc(i.k)}" title="Remove this added item" aria-label="Remove">✕</button>`:''}</div></div>`}).join('')).join(''):
   `<p class="empty">${have.length?'Nothing to buy. You have it all!':'Tick a recipe or add an item to build your list.'}</p>`;
  $('havebox').innerHTML=have.length?`<details><summary>Already have (${have.length})</summary>${have.sort((x,y)=>x.name.localeCompare(y.name)).map(i=>
-  `<div class="it"><span style="flex:1">${label(i)}</span><button class="lnk" data-n="${esc(i.k)}">Need it</button></div>`).join('')}</details>`:'';
+  `<div class="it"><span class="nl">${esc(i.name)}</span>${hbox(i)}<div class="r2"><span class="bl" data-lq="${esc(i.k)}">${lwInner(i)}</span><button class="lnk" data-n="${esc(i.k)}">Need it</button></div></div>`).join('')}</details>`:'';
+ renderFridge();renderPlan();renderNext();
  save()}
 
 function addRow(r){r=r||{n:'',a:'',u:'unit'};
@@ -233,7 +328,7 @@ function addRow(r){r=r||{n:'',a:'',u:'unit'};
  <select class="typ" aria-label="Type">${TYPES.map(t=>`<option ${t===(r.t||(r.n?aisle(norm(r.n)):'Other'))?'selected':''}>${esc(t)}</option>`).join('')}</select>
  <button class="lnk" aria-label="Remove row">✕</button>`;
  d.querySelector('button').onclick=()=>d.remove();$('rows').appendChild(d)}
-function resetForm(){editing=null;$('rname').value='';$('rserves').value=2;$('rows').innerHTML='';for(let i=0;i<4;i++)addRow();
+function resetForm(){editing=null;$('rname').value='';$('rserves').value=2;$('rkind').value='main';$('rows').innerHTML='';for(let i=0;i<4;i++)addRow();
  $('formTitle').textContent='Add a recipe';$('cancel').hidden=true}
 function readRows(){return[...$('rows').children].map(d=>{const i=d.querySelectorAll('input'),a=i[1].value;
  return{n:i[0].value.trim(),a:a===''?null:parseFloat(a),u:d.querySelector('select').value,t:d.querySelector('select.typ').value}}).filter(x=>x.n)}
@@ -254,12 +349,12 @@ document.addEventListener('change',e=>{const t=e.target;
  else if(t.dataset.s){S.recipes.find(r=>r.id===t.dataset.s).cook=Math.max(1,parseFloat(t.value)||1);render()}
  else if(t.dataset.c){S.checked[t.dataset.c]=t.checked;render()}});
 document.addEventListener('click',e=>{const t=e.target;
- if(t.dataset.d){S.recipes=S.recipes.filter(r=>r.id!==t.dataset.d);render()}
+ if(t.dataset.d){const id=t.dataset.d;S.recipes=S.recipes.filter(r=>r.id!==id);Object.values(S.plan).forEach(x=>{if(x.main===id)x.main='';x.sides=(x.sides||[]).filter(y=>y!==id)});render()}
  if(t.dataset.xr){S.extras=S.extras.filter(x=>norm(x.n)+'|'+U[x.u][0]!==t.dataset.xr);render()}
  if(t.dataset.h){S.have[t.dataset.h]=true;render()}
- if(t.dataset.n){delete S.have[t.dataset.n];render()}
+ if(t.dataset.n){delete S.have[t.dataset.n];delete S.haveQty[t.dataset.n];render()}
  if(t.dataset.e){const r=S.recipes.find(r=>r.id===t.dataset.e);editing=r.id;
-  $('rname').value=r.name;$('rserves').value=r.serves;$('rows').innerHTML='';r.rows.forEach(addRow);
+  $('rname').value=r.name;$('rserves').value=r.serves;$('rkind').value=kindOf(r);$('rows').innerHTML='';r.rows.forEach(addRow);
   $('formTitle').textContent='Edit recipe';$('cancel').hidden=false;$('smsg').textContent='';go('add');$('rname').focus()}});
 $('addrow').onclick=()=>addRow();
 $('cancel').onclick=()=>{resetForm();go('recipes')};
@@ -290,8 +385,8 @@ function importWB(wb){
    const tt=String(g('type')).toLowerCase().replace(/\band\b/g,'&').replace(/\s+/g,' ').trim();
    rec.rows.push({n:nm,a:cellNum(g('amt')),u,t:TYPES.find(x=>x.toLowerCase()===tt)||''});count++}});
  const recs=Object.values(by).filter(x=>x.rows.length);
- recs.forEach(x=>{S.recipes=S.recipes.filter(r=>r.name.toLowerCase()!==x.name.toLowerCase());
-  S.recipes.push({id:'r'+Date.now()+Math.random().toString(36).slice(2,6),name:x.name,serves:x.serves,cook:x.serves,on:false,rows:x.rows})});
+ recs.forEach(x=>{const old=S.recipes.find(r=>r.name.toLowerCase()===x.name.toLowerCase());S.recipes=S.recipes.filter(r=>r.name.toLowerCase()!==x.name.toLowerCase());
+  S.recipes.push({id:old?old.id:'r'+Date.now()+Math.random().toString(36).slice(2,6),name:x.name,serves:x.serves,cook:x.serves,kind:old?old.kind:'main',on:false,rows:x.rows})});
  return{nr:recs.length,count,skipped}}
 $('xfile').onchange=async e=>{const f=e.target.files[0];if(!f)return;const m=$('xmsg');
  try{if(typeof XLSX==='undefined')throw new Error('lib');
@@ -301,9 +396,9 @@ $('xfile').onchange=async e=>{const f=e.target.files[0];if(!f)return;const m=$('
  e.target.value=''};
 $('save').onclick=()=>{const name=$('rname').value.trim(),rows=readRows(),serves=Math.max(1,parseFloat($('rserves').value)||1);
  if(!name||!rows.length)return;
- if(editing){const r=S.recipes.find(r=>r.id===editing);r.name=name;r.rows=rows;if(r.serves!==serves){r.serves=serves;r.cook=serves}}
- else S.recipes.push({id:'r'+Date.now(),name,serves,cook:serves,on:true,rows});
- const was=editing;resetForm();render();
+ if(editing){const r=S.recipes.find(r=>r.id===editing);r.name=name;r.rows=rows;r.kind=$('rkind').value;if(r.serves!==serves){r.serves=serves;r.cook=serves}}
+ else S.recipes.push({id:'r'+Date.now(),name,serves,cook:serves,kind:$('rkind').value,on:true,rows});
+ const was=editing,k=$('rkind').value;resetForm();if(!was)$('rkind').value=k;render();
  if(was)go('recipes');else $('smsg').textContent=`Saved “${name}”. Add another, or go back to the menu.`};
 /* Export: fills a copy of the Excel template (same layout, colours and dropdowns) */
 const TPL='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iV23xK5D42gCk1x2u2552HVL7Loldh0aRxOY5LLbdcvDrlti1y2x69A4msAkl92uW5b/Aopdt8SuQ+NoApNcdrtuedh1S+y6JXYdGkcTmOSy23XLw65bYtctsevQOJrAJJfdrlsedt0Su26JXYfG0QQmuex23fKw65bYdUvsOjSOJjDJZbfrTg+77hS77hS7Do2jCUzytNt1p4ddd4pdd4pdh8bRBCZ52u2608OuO8WuO8WuQ+NoApM87Xbd6WHXnWLXnWLXoXE0gUmedrvu9LDrTrHrTrHr0DiawCRPu113eth1p9h1p9h1aBxNYJKn3a47LScj8GwEno7A8xF4QgLPSOh23elh151i151i16FxNIFJnna77vSw606x606x69A4msAkT7tdd3rYdafYdafYdWgcTWCSp92uOzvsujPsujPsOjSOJjDJs27XnR123Rl23Rl2HRpHE5jkWbfrzg677gy77gy7Do2jCUzyrNt1Z4ddd4Zdd4Zdh8bRBCZ51u26s8OuO8OuO8OuQ+NoApM863bd2WHXnWHXnWHXoXE0gUmedbvu7LDrzrDrzrDr0DiawCTPul13Vs524ulOPN+JJzzxjCee8tTturPDrjvDrjvDrkPjaAKTPOt23dlh151h151h16FxNIFJnnW77vyw686x686x69A4msAkz7tdd37YdefYdefYdWgcTWCS592uOz/sunPsunPsOjSOJjDJ827XnR923Tl23Tl2HRpHE5jkebfrzg+77hy77hy7Do2jCUzyvNt154ddd45dd45dh8bRBCZ53u2688OuO8euO8euQ+NoApM873bd+WHXnWPXnWPXoXE0gUmed7vuvJw/yRMoeQYlT6HkOZQ8ibLbdeeHXXeOXXeOXYfG0QQmed7tuovDrrvArrvArkPjaAKTvOh23cVh111g111g16FxNIFJXnS77uKw6y6w6y6w69A4msAkL7pdd3HYdRfYdRfYdWgcTWCSF92uuzjsugvsugvsOjSOJjDJi27XXRx23QV23QV2HRpHE5jkRbfrLg677gK77gK7Do2jCUzyott1F4ddd4Fdd4Fdh8bRBCZ50e26i8Ouu8Cuu8CuQ+NoApO86HbdRTnlmudc86RrnnXN06553nW368ZJPbV55tzmmZObZ85unjm9eeb85m7ljZNyTvEJTyo+4VnFqJxVcJSPRkef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';
@@ -352,7 +447,7 @@ $('export').onclick=async()=>{const m=$('xmsg'),recs=S.recipes.filter(r=>r.rows.
   m.textContent=`Couldn’t build the Excel file, so I saved ${w} as grocery-recipes.csv instead. It imports the same way.`}};
 $('uncheck').onclick=()=>{S.checked={};render()};
 $('copy').onclick=async()=>{
- const txt=build().filter(i=>!S.have[i.k]&&!S.checked[i.k]).map(i=>`- ${i.name}${i.qty?' ('+i.qty+')':''}`).join('\n');
+ const txt=build().filter(i=>!S.have[i.k]&&!i.covered&&!S.checked[i.k]).map(i=>`- ${i.name}${i.qty?' ('+i.qty+')':''}`).join('\n');
  try{await navigator.clipboard.writeText(txt);$('copy').textContent='Copied ✓'}catch(e){$('copy').textContent='Copy failed'}
  setTimeout(()=>$('copy').textContent='Copy shopping list',1500)};
 /* Ingredient autocomplete: narrows as you type */
@@ -393,7 +488,132 @@ $('xadd').onclick=()=>{const n=$('xitem').value.trim();if(!n){$('xitem').focus()
  xReset();render();$('xitem').focus()};
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.defaultPrevented&&e.target.tagName==='INPUT'&&e.target.parentElement.classList.contains('xadd'))$('xadd').click()});
 xReset();
-const VIEWS=['home','recipes','list','add'];
+
+/* ---- Dish types, weekly plan, fridge ---- */
+const DAYS=[['mon','Monday'],['tue','Tuesday'],['wed','Wednesday'],['thu','Thursday'],['fri','Friday'],['sat','Saturday'],['sun','Sunday']];
+let kf='all',pOpen={},rOpen={};
+const kindOf=r=>r.kind==='side'?'side':'main';
+const tagOf=r=>`<span class="tag">${kindOf(r)==='side'?'Side':'Main'}</span>`;
+const dayOf=k=>S.plan[k]||(S.plan[k]={main:'',sides:[],cook:2});
+const recName=id=>{const r=S.recipes.find(y=>y.id===id);return r?r.name:null};
+function renderPlan(){
+ let n=0;
+ $('days').innerHTML=DAYS.map(([k,nm])=>{
+  const x=S.plan[k]||{main:'',sides:[],cook:2},main=recName(x.main)?x.main:'',raw=(x.sides||[]).map(id=>recName(id)?id:''),
+   names=[main,...raw].filter(Boolean).map(recName),set=names.length>0;if(set)n++;
+  const slots=raw.length?raw:[''];
+  return `<details class="day${set?' set':''}" data-day="${k}" ${pOpen[k]?'open':''}><summary><b>${nm}</b><span class="dsum">${set?esc(names.join(' + ')):'Not planned'}</span></summary>
+  <div class="dbody"><h3>Main dish</h3>
+  <div class="pkrow"><input type="text" class="pick" data-pk="${k}|m" autocomplete="off" placeholder="Search main dishes…" value="${main?esc(recName(main)):''}" aria-label="Main dish for ${nm}"></div>
+  <h3>Side dishes</h3>
+  ${slots.map((id,i)=>`<div class="pkrow"><input type="text" class="pick" data-pk="${k}|s|${i}" autocomplete="off" placeholder="Search side dishes…" value="${id?esc(recName(id)):''}" aria-label="Side dish ${i+1} for ${nm}"><button class="lnk" data-px="${k}|${i}" aria-label="Remove side dish">✕</button></div>`).join('')}
+  <button class="addside" data-pa="${k}"><b>+</b> Add another side dish</button>
+  <div class="srv">Cooking for <input type="number" min="1" step="1" value="${x.cook||2}" data-pc="${k}" aria-label="Servings"></div>
+  <div class="row"><button class="lnk" data-pd="${k}">Clear ${nm}</button></div></div></details>`}).join('');
+ $('t3').textContent=n?`${n} of 7 days planned`:'Choose dishes for the days you’ll cook';
+}
+function renderFridge(){
+ const idx={};S.recipes.forEach(r=>r.rows.forEach(x=>{const n=norm(x.n);if(n&&!idx[n])idx[n]=x.t||aisle(n)}));
+ const names=Object.keys(idx),fq=norm($('fq').value),g={};
+ names.filter(n=>!fq||n.includes(fq)).sort().forEach(n=>(g[idx[n]]=g[idx[n]]||[]).push(n));
+ const order=[...TYPES,...Object.keys(g).filter(k=>!TYPES.includes(k))].filter(a=>g[a]),box=$('fridge'),sc=box.scrollTop;
+ box.innerHTML=order.length?order.map(a=>`<h3>${ICON[a]||'🛒'} ${esc(a)} <span class="cnt">${g[a].length}</span></h3>`+g[a].map(n=>`<label class="fi"><input type="checkbox" data-f="${esc(n)}" ${S.fridge[n]?'checked':''}><span>${esc(n)}</span></label>`).join('')).join(''):`<p class="empty">${names.length?'No ingredients match “'+esc($('fq').value.trim())+'”.':'Add some recipes first and their ingredients will show up here.'}</p>`;
+ box.scrollTop=sc;
+ const have=names.filter(n=>S.fridge[n]).length;
+ $('fcount').textContent=have?`${have} ticked`:'Nothing ticked yet';
+ $('t4').textContent=have?`${have} ingredient${have>1?'s':''} ticked`:'Tick what you have, see what you can cook';
+ const res=S.recipes.map(r=>{const ns=[...new Set(r.rows.map(x=>norm(x.n)).filter(Boolean))];return{r,ns,h:ns.filter(n=>S.fridge[n]),m:ns.filter(n=>!S.fridge[n])}})
+  .filter(o=>o.h.length).sort((a,b)=>b.h.length-a.h.length||b.h.length/b.ns.length-a.h.length/a.ns.length||a.r.name.localeCompare(b.r.name));
+ $('fres').innerHTML=!have?'<p class="empty">Tick what you have above and the recipes you can make will show here, best match first.</p>':
+  res.length?res.map(o=>`<div class="rec${o.m.length?'':' on'}"><div class="top"><div class="nm">${esc(o.r.name)}${tagOf(o.r)}</div><button data-fon="${esc(o.r.id)}">${o.r.on?'✓ This week':'Add to this week'}</button></div>
+  <div class="fm"><b>${o.h.length} of ${o.ns.length}</b> ingredients in your fridge</div><div class="pbar"><i style="width:${Math.round(o.h.length/o.ns.length*100)}%"></i></div>
+  <div class="hint">${o.m.length?'Still need: '+o.m.map(esc).join(', '):'You have everything for this one.'}</div></div>`).join(''):'<p class="empty">None of your recipes use those ingredients yet.</p>'}
+/* Look ahead: what the kitchen holds after this week's shop, and which other recipes it would cover */
+function renderNext(){
+ const picked=new Set(S.recipes.filter(r=>r.on).map(r=>r.id));
+ DAYS.forEach(([k])=>{const x=S.plan[k];if(x)[x.main,...(x.sides||[])].forEach(id=>{if(id&&S.recipes.some(r=>r.id===id))picked.add(id)})});
+ const buy=new Set(),home=new Set(),nm=k=>k.split('|')[0];
+ S.recipes.filter(r=>picked.has(r.id)).forEach(r=>r.rows.forEach(x=>{const n=norm(x.n);if(n)buy.add(n)}));
+ (S.extras||[]).forEach(x=>{const n=norm(x.n);if(n)buy.add(n)});
+ Object.keys(S.fridge).forEach(n=>home.add(n));
+ Object.keys(S.have).forEach(k=>{if(S.have[k])home.add(nm(k))});
+ Object.keys(S.haveQty).forEach(k=>{const q=S.haveQty[k];if(q&&q.v>0)home.add(nm(k))});
+ const all=new Set([...buy,...home]);
+ const res=S.recipes.filter(r=>!picked.has(r.id)).map(r=>{const ns=[...new Set(r.rows.map(x=>norm(x.n)).filter(Boolean))];
+   return{r,ns,h:ns.filter(n=>all.has(n)),m:ns.filter(n=>!all.has(n))}}).filter(o=>o.h.length)
+  .sort((a,b)=>a.m.length-b.m.length||b.h.length-a.h.length||a.r.name.localeCompare(b.r.name));
+ const nh=[...home].filter(n=>!buy.has(n)).length,pl=picked.size;
+ $('nsum').textContent=all.size?`Counting ${buy.size} ingredient${buy.size===1?'':'s'} from ${pl} picked or planned recipe${pl===1?'':'s'}, plus ${nh} more you already have.`:'Nothing to look ahead from yet. Tick some recipes, plan some days, or tick what’s in your fridge.';
+ const was=$('nbox').querySelector('details'),op=was&&was.open;
+ $('nbox').innerHTML=all.size?`<details ${op?'open':''}><summary>See everything counted (${all.size})</summary><div class="hint" style="line-height:1.8">${[...all].sort().map(esc).join(' · ')}</div></details>`:'';
+ $('nres').innerHTML=!all.size?'<p class="empty">Pick some recipes or tick what’s in your fridge and ideas will show here, closest match first.</p>':
+  res.length?res.map(o=>`<div class="rec${o.m.length?'':' on'}"><div class="top"><div class="nm">${esc(o.r.name)}${tagOf(o.r)}</div><button data-fon="${esc(o.r.id)}">Add to this week</button></div>
+  <div class="fm"><b>${o.h.length} of ${o.ns.length}</b> ingredients already covered</div><div class="pbar"><i style="width:${Math.round(o.h.length/o.ns.length*100)}%"></i></div>
+  <div class="hint">Covered: ${o.h.map(esc).join(', ')}</div>
+  <div class="hint">${o.m.length?'Still need: '+o.m.map(esc).join(', '):'You’ll have everything for this one.'}</div></div>`).join(''):'<p class="empty">None of your other recipes share those ingredients yet.</p>';
+ $('t5').textContent=res.length?`${res.length} other recipe${res.length>1?'s share':' shares'} what you’re buying`:'See what this week’s shopping could also make'}
+$('fq').oninput=renderFridge;
+$('fclear').onclick=()=>{S.fridge={};render()};
+$('pclear').onclick=()=>{S.plan={};render()};
+document.addEventListener('toggle',e=>{const t=e.target;if(t.dataset&&t.dataset.day)pOpen[t.dataset.day]=t.open;if(t.dataset&&t.dataset.rd)rOpen[t.dataset.rd]=t.open},true);
+document.addEventListener('change',e=>{const t=e.target,d=t.dataset;
+ if('f'in d){if(t.checked)S.fridge[d.f]=true;else delete S.fridge[d.f];render()}
+ else if(d.pc!==undefined){dayOf(d.pc).cook=Math.max(1,parseFloat(t.value)||2);render()}
+ else if(t.classList&&t.classList.contains('pick')){
+  const f=pkInfo(t),v=norm(t.value);
+  if(!v){const x=dayOf(f.k);if(f.t==='m')x.main='';else if(x.sides)x.sides.splice(f.i,1);pkHide();render()}
+  else{const r=S.recipes.find(y=>norm(y.name)===v&&!f.used.includes(y.id));if(r&&r.id!==f.cur)pkPick(t,r.id);else render()}}});
+document.addEventListener('click',e=>{const t=e.target.closest('button,div[data-v]')||e.target,d=t.dataset||{};
+ if(d.kf){kf=d.kf;render()}
+ if(d.fon){const r=S.recipes.find(y=>y.id===d.fon);if(r){r.on=!r.on;render()}}
+ if(d.px){const[k,i]=d.px.split('|'),x=dayOf(k);if(x.sides)x.sides.splice(+i,1);render()}
+ if(d.pa){const x=dayOf(d.pa);x.sides=x.sides||[];const n=Math.max(1,x.sides.length);while(x.sides.length<n)x.sides.push('');x.sides.push('');render();
+  const nx=document.querySelector(`[data-pk="${d.pa}|s|${n}"]`);if(nx)nx.focus()}
+ if(d.pd){delete S.plan[d.pd];render()}});
+
+/* Type-to-search picker for the plan's dish boxes */
+const pk=document.createElement('div');pk.id='pkpanel';pk.className='ac';pk.hidden=true;document.body.appendChild(pk);
+let pkIn=null,pkIdx=-1;
+const pkHide=()=>{pk.hidden=true;pkIn=null;pkIdx=-1};
+function pkInfo(inp){const[k,t,i]=inp.dataset.pk.split('|'),x=S.plan[k]||{main:'',sides:[]},cur=t==='m'?x.main:(x.sides||[])[+i]||'';
+ return{k,t,i:+i,cur,pref:t==='m'?'main':'side',used:[x.main,...(x.sides||[])].filter(id=>id&&id!==cur)}}
+function pkPos(inp){const b=inp.getBoundingClientRect(),vh=window.visualViewport?visualViewport.height:innerHeight;
+ pk.style.left=b.left+'px';pk.style.width=b.width+'px';
+ if(vh-b.bottom<200&&b.top>vh-b.bottom){pk.style.top='auto';pk.style.bottom=(innerHeight-b.top+2)+'px'}else{pk.style.bottom='auto';pk.style.top=(b.bottom+2)+'px'}}
+function pkShow(inp,q){
+ const f=pkInfo(inp);q=norm(q||'');
+ const sc=r=>(kindOf(r)===f.pref?0:2)+(norm(r.name).startsWith(q)?0:1);
+ const m=S.recipes.filter(r=>!f.used.includes(r.id)&&(!q||norm(r.name).includes(q)||r.rows.some(y=>norm(y.n).includes(q)))).sort((a,b)=>sc(a)-sc(b)||a.name.localeCompare(b.name)).slice(0,30);
+ pkIn=inp;pkIdx=-1;
+ pk.innerHTML=m.length?m.map(r=>`<div data-v="${esc(r.id)}">${esc(r.name)}${kindOf(r)!==f.pref?` <span class="q">${kindOf(r)==='side'?'Side':'Main'}</span>`:''}</div>`).join(''):'<div class="q" style="cursor:default">No recipes match</div>';
+ pkPos(inp);pk.hidden=false}
+function pkPick(inp,id){const f=pkInfo(inp),x=dayOf(f.k);
+ if(f.t==='m')x.main=id;else{x.sides=x.sides||[];while(x.sides.length<=f.i)x.sides.push('');x.sides[f.i]=id}
+ pkHide();render()}
+function pkMark(){[...pk.children].forEach((c,i)=>c.classList.toggle('on',i===pkIdx));if(pk.children[pkIdx])pk.children[pkIdx].scrollIntoView({block:'nearest'})}
+document.addEventListener('focusin',e=>{const t=e.target;if(t.classList&&t.classList.contains('pick')){t.select();pkShow(t,'')}});
+document.addEventListener('input',e=>{const t=e.target;if(t.classList&&t.classList.contains('pick'))pkShow(t,t.value)});
+document.addEventListener('focusout',e=>{if(e.target===pkIn)pkHide()});
+document.addEventListener('keydown',e=>{if(pk.hidden||e.target!==pkIn)return;const n=pk.querySelectorAll('div[data-v]').length;
+ if(e.key==='ArrowDown'&&n){e.preventDefault();pkIdx=(pkIdx+1)%n;pkMark()}
+ else if(e.key==='ArrowUp'&&n){e.preventDefault();pkIdx=(pkIdx-1+n)%n;pkMark()}
+ else if(e.key==='Enter'&&n){e.preventDefault();pkPick(pkIn,pk.children[Math.max(pkIdx,0)].dataset.v)}
+ else if(e.key==='Escape')pkHide()});
+pk.addEventListener('mousedown',e=>e.preventDefault());
+pk.addEventListener('click',e=>{const d=e.target.closest('div[data-v]');if(d&&pkIn)pkPick(pkIn,d.dataset.v)});
+const pkReflow=()=>{if(pkIn)pkPos(pkIn)};
+document.addEventListener('scroll',e=>{if(e.target!==pk)pkReflow()},true);window.addEventListener('resize',pkReflow);
+if(window.visualViewport)visualViewport.addEventListener('resize',pkReflow);
+
+function haveSet(inp){const k=inp.dataset.hq,hv=inp.closest('.hv'),sel=hv&&hv.querySelector('select'),n=num(inp.value.trim().replace(',','.'));
+ S.haveQty[k]={v:n>0?n:'',u:sel?sel.value:'unit'}}
+document.addEventListener('input',e=>{const t=e.target;if(!t.dataset||t.dataset.hq===undefined)return;
+ haveSet(t);const i=build().find(x=>x.k===t.dataset.hq),sp=[...document.querySelectorAll('[data-lq]')].find(x=>x.dataset.lq===t.dataset.hq);
+ if(i&&sp)sp.innerHTML=lwInner(i);save()});
+document.addEventListener('change',e=>{const t=e.target;if(!t.dataset)return;
+ if(t.dataset.hq!==undefined){haveSet(t);render()}
+ else if(t.dataset.hu!==undefined){const inp=t.closest('.hv').querySelector('[data-hq]');haveSet(inp);render()}});
+const VIEWS=['home','recipes','plan','fridge','next','list','add'];
 function show(v){if(!VIEWS.includes(v))v='home';VIEWS.forEach(x=>$('v-'+x).hidden=x!==v);$('crumb').hidden=v==='home';window.scrollTo(0,0)}
 function go(v){location.hash=v==='home'?'':v;show(v)}
 window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
