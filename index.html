@@ -144,7 +144,18 @@ main{max-width:760px}
 .ings{margin:4px 0 0;padding:0;list-style:none;font:.95rem system-ui,sans-serif}
 .ings li{display:flex;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line)}
 .ings li:last-child{border:0}
+.ed{margin-top:8px}
+.edhd{display:flex;align-items:center;gap:8px;margin-bottom:8px;font:.85rem system-ui,sans-serif;color:var(--mute)}
+.edhd input{width:70px;padding:6px 8px}
+.ir{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px 0;border-bottom:1px solid var(--line)}
+.ir:last-child{border:0}
+.ir .iname{grid-column:1/3;font-size:1.05rem}
+.ir small{grid-column:1/3}
+.ir select{min-width:0}
 .ings .qa{min-width:72px;color:var(--mute);white-space:nowrap}
+.ovl{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
+.dlg{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:18px;max-width:380px;width:100%}
+.dlg p{margin:0 0 4px;font:1rem/1.45 system-ui,sans-serif}
 </style>
 </head>
 <body>
@@ -155,11 +166,12 @@ main{max-width:760px}
 <section id="v-home" class="tiles">
   <button class="tile" data-go="list"><span class="ti">🛒</span><span><b>Grocery list</b><small id="t2"></small></span></button>
   <button class="tile" data-go="plan"><span class="ti">📅</span><span><b>Plan meals for the week</b><small id="t3"></small></span></button>
-  <button class="tile" data-go="list" data-focus="xitem"><span class="ti">🧴</span><span><b>Add an item</b><small>A single ingredient, toilet paper, dish soap, anything not in a recipe</small></span></button>
+  <button class="tile" data-go="ings" data-focus="xitem"><span class="ti">🧴</span><span><b>Add or edit an item</b><small id="t6">A single ingredient, toilet paper, dish soap, anything not in a recipe</small></span></button>
   <button class="tile" data-go="fridge"><span class="ti">🧊</span><span><b>What’s in my fridge</b><small id="t4"></small></span></button>
   <button class="tile" data-go="next"><span class="ti">💡</span><span><b>What else could I cook?</b><small id="t5">See what this week’s shopping could also make</small></span></button>
   <button class="tile" data-go="recipes"><span class="ti">🍽️</span><span><b>Recipes</b><small id="t1"></small></span></button>
   <button class="tile" data-go="add"><span class="ti">➕</span><span><b>Add a recipe</b><small>Type one in, or import and export with Excel</small></span></button>
+  <button class="tile" id="sover" style="grid-column:1/-1;justify-content:center;text-align:center"><span class="ti">↺</span><span><b>Start over</b><small>Clears this week’s lists and keeps all your recipes</small></span></button>
 </section>
 <section id="v-recipes" hidden>
 <div class="card"><h2>Recipes</h2><input type="search" id="q" placeholder="Search recipes or ingredients" aria-label="Search recipes"><div class="chips" id="kfs"><button data-kf="all">All</button><button data-kf="main">Main dishes</button><button data-kf="side">Side dishes</button></div><p class="hint" id="qcount"></p><div id="recs"></div></div>
@@ -181,10 +193,28 @@ main{max-width:760px}
 </div>
 <div class="card"><h2>Best matches</h2><div id="fres"></div></div>
 </section>
+<section id="v-ings" hidden>
+<div class="card">
+  <h2>Add or edit an item</h2>
+  <p class="hint">Add anything that isn’t in a recipe to this week’s grocery list, or change the name, unit or category of any ingredient below. Edits apply everywhere it’s used.</p>
+    <div class="xadd">
+      <input type="text" class="ing" id="xitem" autocomplete="off" placeholder="Add an item, e.g. toilet paper" aria-label="Item">
+      <input type="number" id="xamt" min="0" step="0.25" inputmode="decimal" placeholder="Qty" aria-label="Amount">
+      <select id="xunit" aria-label="Unit"></select>
+      <select class="typ" id="xtype" aria-label="Type"></select>
+      <button class="pri" id="xadd">Add</button>
+    </div>
+  <p class="hint" id="imsg" role="status"></p>
+  <h3>All your ingredients</h3>
+  <input type="search" id="iq" placeholder="Search ingredients" autocomplete="off" aria-label="Search ingredients">
+  <p class="hint" id="icount"></p>
+  <div id="ilist"></div>
+</div>
+</section>
 <section id="v-next" hidden>
 <div class="card">
   <h2>What you’ll have after shopping</h2>
-  <p class="hint">A look ahead. Everything in the recipes you’ve ticked or planned, plus anything you’ve ticked in the fridge or marked as “Have it”, counts as in your kitchen.</p>
+  <p class="hint">A look ahead. Everything in the recipes you’ve ticked or planned, plus anything you’ve ticked in the fridge, counts as in your kitchen. “Have it” ticks only count for items on this week’s list.</p>
   <p class="hint" id="nsum"></p>
   <div id="nbox"></div>
 </div>
@@ -193,13 +223,7 @@ main{max-width:760px}
 <section class="card" id="v-list" hidden>
     <h2>Grocery list</h2>
     <div id="prog"></div>
-    <div class="xadd">
-      <input type="text" class="ing" id="xitem" autocomplete="off" placeholder="Add an item, e.g. toilet paper" aria-label="Item">
-      <input type="number" id="xamt" min="0" step="0.25" inputmode="decimal" placeholder="Qty" aria-label="Amount">
-      <select id="xunit" aria-label="Unit"></select>
-      <select class="typ" id="xtype" aria-label="Type"></select>
-      <button class="pri" id="xadd">Add</button>
-    </div>
+    <div class="row" style="margin:0 0 12px"><button data-go="ings" data-focus="xitem">＋ Add or edit an item</button></div>
     <div id="list"></div>
     <div id="havebox"></div>
     <div class="row"><button class="pri" id="copy">Copy shopping list</button><button id="uncheck">Uncheck bought</button></div>
@@ -292,6 +316,7 @@ const hbox=i=>{if(i.base===null)return'';const hq=S.haveQty[i.k]||{},u=hq.u||def
  return `<div class="hv"><input type="text" inputmode="decimal" class="hq" data-hq="${esc(i.k)}" value="${hq.v>0?hq.v:''}" placeholder="0" autocomplete="off" aria-label="Amount of ${esc(i.name)} you already have">${o.length?`<select data-hu="${esc(i.k)}" aria-label="Unit">${o.map(x=>`<option ${x===u?'selected':''}>${x}</option>`).join('')}</select>`:''}</div>`}
 
 function render(){
+ Object.keys(rEdit).forEach(id=>{const c=document.querySelector(`[data-ed="${id}"]`);if(c)rEdit[id]={rows:readRows(c.querySelector('.edrows'),true),serves:c.querySelector('[data-es]').value}});
  const qv=norm($('q').value),shown=S.recipes.filter(r=>(kf==='all'||kindOf(r)===kf)&&(!qv||norm(r.name).includes(qv)||r.rows.some(x=>norm(x.n).includes(qv))));
  [...$('kfs').children].forEach(b=>b.classList.toggle('on',b.dataset.kf===kf));
  $('qcount').textContent=(qv||kf!=='all')?`Showing ${shown.length} of ${S.recipes.length}`:`${S.recipes.filter(r=>r.on).length} of ${S.recipes.length} ticked for this week`;
@@ -300,9 +325,10 @@ function render(){
   <div class="nm">${esc(r.name)}<span class="tag">${kindOf(r)==='side'?'Side':'Main'}</span></div>
   <button class="lnk" data-e="${r.id}">Edit</button><button class="lnk" data-d="${r.id}">✕</button></div>
   <div class="srv">Cooking for <input type="number" min="1" step="1" value="${r.cook||r.serves}" data-s="${r.id}" aria-label="Servings"></div>
-  <details data-rd="${r.id}" ${rOpen[r.id]?'open':''}><summary>Read recipe · ${r.rows.length} ingredient${r.rows.length===1?'':'s'}</summary>
-  <p class="meta">Serves ${r.serves}${r.cook&&r.cook!==r.serves?' · amounts below are for '+r.serves:''}</p>
-  <ul class="ings">${r.rows.map(x=>`<li><span class="qa">${x.a===null||x.a===''||isNaN(x.a)?'':r2(x.a)+(x.u==='unit'?'':' '+x.u)}</span><span>${esc(x.n)}</span></li>`).join('')}</ul></details></div>`).join(''):`<p class="empty">${S.recipes.length?'No recipes match'+(qv?' “'+esc($('q').value.trim())+'”':' this filter')+'.':'No recipes yet. Add one below.'}</p>`;
+  <details data-rd="${r.id}" ${rOpen[r.id]||rEdit[r.id]?'open':''}><summary>Read recipe · ${r.rows.length} ingredient${r.rows.length===1?'':'s'}</summary>
+  ${rEdit[r.id]?`<div class="ed" data-ed="${r.id}"><div class="edhd">Serves <input type="number" min="1" step="1" value="${esc(rEdit[r.id].serves)}" data-es aria-label="Serves"></div><div class="edrows"></div><div class="row"><button data-ea="${r.id}">+ Add ingredient</button></div><p class="hint edmsg" role="status"></p><div class="row"><button class="pri" data-esv="${r.id}">Save changes</button><button data-ec="${r.id}">Cancel</button></div></div>`:`  <p class="meta">Serves ${r.serves}${r.cook&&r.cook!==r.serves?' · amounts below are for '+r.serves:''}</p>
+  <ul class="ings">${r.rows.map(x=>`<li><span class="qa">${x.a===null||x.a===''||isNaN(x.a)?'':r2(x.a)+(x.u==='unit'?'':' '+x.u)}</span><span>${esc(x.n)}</span></li>`).join('')}</ul><div class="row"><button data-ei="${r.id}">Edit ingredients</button></div>`}</details></div>`).join(''):`<p class="empty">${S.recipes.length?'No recipes match'+(qv?' “'+esc($('q').value.trim())+'”':' this filter')+'.':'No recipes yet. Add one below.'}</p>`;
+ Object.keys(rEdit).forEach(id=>{const c=document.querySelector(`[data-ed="${id}"] .edrows`);if(c)rEdit[id].rows.forEach(x=>c.appendChild(rowEl(x)))});
  const items=build(),need=items.filter(i=>!S.have[i.k]&&!i.covered),have=items.filter(i=>S.have[i.k]||i.covered),g={};
  need.forEach(i=>(g[i.aisle]=g[i.aisle]||[]).push(i));
  const order=[...TYPES,...Object.keys(g).filter(k=>!TYPES.includes(k))].filter(a=>g[a]),done=need.filter(i=>S.checked[i.k]).length;
@@ -317,21 +343,22 @@ function render(){
   `<p class="empty">${have.length?'Nothing to buy. You have it all!':'Tick a recipe or add an item to build your list.'}</p>`;
  $('havebox').innerHTML=have.length?`<details><summary>Already have (${have.length})</summary>${have.sort((x,y)=>x.name.localeCompare(y.name)).map(i=>
   `<div class="it"><span class="nl">${esc(i.name)}</span>${hbox(i)}<div class="r2"><span class="bl" data-lq="${esc(i.k)}">${lwInner(i)}</span><button class="lnk" data-n="${esc(i.k)}">Need it</button></div></div>`).join('')}</details>`:'';
- renderFridge();renderPlan();renderNext();
+ renderFridge();renderPlan();renderNext();renderIngs();
  save()}
 
-function addRow(r){r=r||{n:'',a:'',u:'unit'};
+function addRow(r){$('rows').appendChild(rowEl(r))}
+function rowEl(r){r=r||{n:'',a:'',u:'unit'};
  const d=document.createElement('div');d.className='r3';
  d.innerHTML=`<input type="text" class="ing" autocomplete="off" placeholder="Ingredient, e.g. onion" value="${esc(r.n)}" aria-label="Ingredient">
  <input type="number" min="0" step="0.25" inputmode="decimal" value="${r.a===null?'':r.a}" placeholder="Amount" aria-label="Amount">
  <select aria-label="Unit">${Object.keys(U).map(u=>`<option ${u===r.u?'selected':''}>${u}</option>`).join('')}</select>
  <select class="typ" aria-label="Type">${TYPES.map(t=>`<option ${t===(r.t||(r.n?aisle(norm(r.n)):'Other'))?'selected':''}>${esc(t)}</option>`).join('')}</select>
  <button class="lnk" aria-label="Remove row">✕</button>`;
- d.querySelector('button').onclick=()=>d.remove();$('rows').appendChild(d)}
+ d.querySelector('button').onclick=()=>d.remove();return d}
 function resetForm(){editing=null;$('rname').value='';$('rserves').value=2;$('rkind').value='main';$('rows').innerHTML='';for(let i=0;i<4;i++)addRow();
  $('formTitle').textContent='Add a recipe';$('cancel').hidden=true}
-function readRows(){return[...$('rows').children].map(d=>{const i=d.querySelectorAll('input'),a=i[1].value;
- return{n:i[0].value.trim(),a:a===''?null:parseFloat(a),u:d.querySelector('select').value,t:d.querySelector('select.typ').value}}).filter(x=>x.n)}
+function readRows(c,keep){return[...(c||$('rows')).children].map(d=>{const i=d.querySelectorAll('input'),a=i[1].value;
+ return{n:i[0].value.trim(),a:a===''?null:parseFloat(a),u:d.querySelector('select').value,t:d.querySelector('select.typ').value}}).filter(x=>keep||x.n)}
 function num(s){let m;if(m=s.match(/^(\d+) (\d+)\/(\d+)$/))return+m[1]+m[2]/m[3];if(m=s.match(/^(\d+)\/(\d+)$/))return m[1]/m[2];return parseFloat(s)}
 function parseLine(l){
  l=l.trim().replace(/[½¼¾⅓⅔]/g,c=>' '+FR[c]).replace(/\s+/g,' ').trim();if(!l)return null;
@@ -350,6 +377,12 @@ document.addEventListener('change',e=>{const t=e.target;
  else if(t.dataset.c){S.checked[t.dataset.c]=t.checked;render()}});
 document.addEventListener('click',e=>{const t=e.target;
  if(t.dataset.d){const id=t.dataset.d;S.recipes=S.recipes.filter(r=>r.id!==id);Object.values(S.plan).forEach(x=>{if(x.main===id)x.main='';x.sides=(x.sides||[]).filter(y=>y!==id)});render()}
+ if(t.dataset.ei){const r=S.recipes.find(r=>r.id===t.dataset.ei);rEdit[r.id]={rows:r.rows.map(x=>({...x})),serves:r.serves};rOpen[r.id]=true;render()}
+ if(t.dataset.ec){delete rEdit[t.dataset.ec];render()}
+ if(t.dataset.ea){const d=rowEl();document.querySelector(`[data-ed="${t.dataset.ea}"] .edrows`).appendChild(d);d.querySelector('.ing').focus()}
+ if(t.dataset.esv){const id=t.dataset.esv,c=document.querySelector(`[data-ed="${id}"]`),rows=readRows(c.querySelector('.edrows')),sv=Math.max(1,parseFloat(c.querySelector('[data-es]').value)||1),r=S.recipes.find(r=>r.id===id);
+  if(!rows.length){c.querySelector('.edmsg').textContent='A recipe needs at least one ingredient.';return}
+  r.rows=rows;if(r.serves!==sv){r.serves=sv;r.cook=sv}delete rEdit[id];render()}
  if(t.dataset.xr){S.extras=S.extras.filter(x=>norm(x.n)+'|'+U[x.u][0]!==t.dataset.xr);render()}
  if(t.dataset.h){S.have[t.dataset.h]=true;render()}
  if(t.dataset.n){delete S.have[t.dataset.n];delete S.haveQty[t.dataset.n];render()}
@@ -485,13 +518,13 @@ $('xtype').innerHTML=TYPES.map(t=>`<option>${esc(t)}</option>`).join('');
 function xReset(){$('xitem').value='';$('xamt').value='';$('xunit').value='unit';$('xtype').value='Household';delete $('xtype').dataset.m}
 $('xadd').onclick=()=>{const n=$('xitem').value.trim();if(!n){$('xitem').focus();return}
  const a=$('xamt').value;S.extras.push({id:'e'+Date.now(),n,a:a===''?null:parseFloat(a),u:$('xunit').value,t:$('xtype').value});
- xReset();render();$('xitem').focus()};
+ xReset();render();$('imsg').textContent='Added “'+n+'” to your grocery list.';$('xitem').focus()};
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.defaultPrevented&&e.target.tagName==='INPUT'&&e.target.parentElement.classList.contains('xadd'))$('xadd').click()});
 xReset();
 
 /* ---- Dish types, weekly plan, fridge ---- */
 const DAYS=[['mon','Monday'],['tue','Tuesday'],['wed','Wednesday'],['thu','Thursday'],['fri','Friday'],['sat','Saturday'],['sun','Sunday']];
-let kf='all',pOpen={},rOpen={};
+let kf='all',pOpen={},rOpen={},rEdit={};
 const kindOf=r=>r.kind==='side'?'side':'main';
 const tagOf=r=>`<span class="tag">${kindOf(r)==='side'?'Side':'Main'}</span>`;
 const dayOf=k=>S.plan[k]||(S.plan[k]={main:'',sides:[],cook:2});
@@ -536,8 +569,8 @@ function renderNext(){
  S.recipes.filter(r=>picked.has(r.id)).forEach(r=>r.rows.forEach(x=>{const n=norm(x.n);if(n)buy.add(n)}));
  (S.extras||[]).forEach(x=>{const n=norm(x.n);if(n)buy.add(n)});
  Object.keys(S.fridge).forEach(n=>home.add(n));
- Object.keys(S.have).forEach(k=>{if(S.have[k])home.add(nm(k))});
- Object.keys(S.haveQty).forEach(k=>{const q=S.haveQty[k];if(q&&q.v>0)home.add(nm(k))});
+ Object.keys(S.have).forEach(k=>{if(S.have[k]&&buy.has(nm(k)))home.add(nm(k))});
+ Object.keys(S.haveQty).forEach(k=>{const q=S.haveQty[k];if(q&&q.v>0&&buy.has(nm(k)))home.add(nm(k))});
  const all=new Set([...buy,...home]);
  const res=S.recipes.filter(r=>!picked.has(r.id)).map(r=>{const ns=[...new Set(r.rows.map(x=>norm(x.n)).filter(Boolean))];
    return{r,ns,h:ns.filter(n=>all.has(n)),m:ns.filter(n=>!all.has(n))}}).filter(o=>o.h.length)
@@ -552,8 +585,60 @@ function renderNext(){
   <div class="hint">Covered: ${o.h.map(esc).join(', ')}</div>
   <div class="hint">${o.m.length?'Still need: '+o.m.map(esc).join(', '):'You’ll have everything for this one.'}</div></div>`).join(''):'<p class="empty">None of your other recipes share those ingredients yet.</p>';
  $('t5').textContent=res.length?`${res.length} other recipe${res.length>1?'s share':' shares'} what you’re buying`:'See what this week’s shopping could also make'}
+function ask(msg,ok){return new Promise(res=>{
+ const o=document.createElement('div');o.className='ovl';
+ o.innerHTML='<div class="dlg" role="dialog" aria-modal="true"><p></p><div class="row"><button class="pri" data-ok></button><button data-no>Cancel</button></div></div>';
+ o.querySelector('p').textContent=msg;o.querySelector('[data-ok]').textContent=ok||'OK';
+ const done=v=>{o.remove();res(v)};
+ o.querySelector('[data-ok]').onclick=()=>done(true);o.querySelector('[data-no]').onclick=()=>done(false);
+ o.addEventListener('click',e=>{if(e.target===o)done(false)});
+ o.addEventListener('keydown',e=>{if(e.key==='Escape')done(false)});
+ document.body.appendChild(o);o.querySelector('[data-no]').focus()})}
+/* Ingredients: one list, edit a name, unit or category across every recipe at once */
+let ingLock=false,iq='';
+const UF=Object.keys(U),topOf=o=>Object.entries(o).sort((a,b)=>b[1]-a[1])[0][0];
+const rowsOf=k=>[...S.recipes.flatMap(r=>r.rows),...S.extras].filter(x=>norm(x.n)===k);
+function ingList(){const m={};
+ [...S.recipes.flatMap(r=>r.rows.map(x=>[x,r.name])),...S.extras.map(x=>[x,null])].forEach(([x,rn])=>{const k=norm(x.n);if(!k)return;
+  const o=m[k]||(m[k]={k,units:{},cats:{},rec:[],ex:false});
+  o.units[x.u]=(o.units[x.u]||0)+1;const c=x.t||aisle(k);o.cats[c]=(o.cats[c]||0)+1;
+  if(rn===null)o.ex=true;else if(!o.rec.includes(rn))o.rec.push(rn)});
+ return Object.values(m).sort((a,b)=>a.k.localeCompare(b.k))}
+function renderIngs(){
+ if(ingLock)return;
+ const all=ingList(),q=norm(iq),list=q?all.filter(o=>o.k.includes(q)):all;
+ $('t6').textContent=all.length?`Add an item, or edit any of your ${all.length} ingredient${all.length===1?'':'s'}`:'A single ingredient, toilet paper, dish soap, anything not in a recipe';
+ $('icount').textContent=q?`Showing ${list.length} of ${all.length}`:`${all.length} ingredient${all.length===1?'':'s'}`;
+ $('ilist').innerHTML=list.length?list.map(o=>{
+  const us=Object.keys(o.units),cat=topOf(o.cats),k=esc(o.k);
+  const uopt=(us.length>1?'<option value="" selected disabled>mixed units</option>':'')+UF.map(u=>`<option ${us.length===1&&us[0]===u?'selected':''}>${u}</option>`).join('');
+  const copt=[...new Set([...TYPES,cat])].map(c=>`<option ${c===cat?'selected':''}>${esc(c)}</option>`).join('');
+  const rn=o.rec.slice(0,3).map(esc).join(', ')+(o.rec.length>3?` +${o.rec.length-3} more`:''),info=[o.rec.length?`${o.rec.length} recipe${o.rec.length===1?'':'s'}: ${rn}`:'',o.ex?'added item':''].filter(Boolean).join(' · ');
+  return `<div class="ir"><input type="text" class="iname" value="${k}" data-in="${k}" autocomplete="off" aria-label="Ingredient name">
+  <select data-iu="${k}" aria-label="Unit">${uopt}</select><select data-ic="${k}" aria-label="Category">${copt}</select>
+  <small class="q">${info}</small></div>`}).join(''):`<p class="empty">${all.length?'No ingredients match.':'No ingredients yet. Add a recipe first.'}</p>`}
+const ingGo=()=>{ingLock=true;render();ingLock=false};
+document.addEventListener('change',async e=>{const t=e.target,d=t.dataset||{};
+ if(d.in!==undefined){const old=d.in,nv=norm(t.value);$('imsg').textContent='';
+  if(!nv){renderIngs();return}
+  if(nv===old)return;
+  const merged=ingList().some(o=>o.k===nv);
+  rowsOf(old).forEach(x=>{x.n=nv});
+  ['w','v','u'].forEach(f=>{const a=old+'|'+f,b=nv+'|'+f;[S.have,S.haveQty,S.checked].forEach(o=>{if(a in o){if(!(b in o))o[b]=o[a];delete o[a]}})});
+  if(S.fridge[old]){S.fridge[nv]=true;delete S.fridge[old]}
+  t.closest('.ir').querySelectorAll('[data-in],[data-iu],[data-ic]').forEach(el=>{if(el.dataset.in!==undefined)el.dataset.in=nv;if(el.dataset.iu!==undefined)el.dataset.iu=nv;if(el.dataset.ic!==undefined)el.dataset.ic=nv});
+  ingGo();if(merged)$('imsg').textContent=`“${nv}” already existed, so the two are now combined on your grocery list.`}
+ else if(d.iu!==undefined){const k=d.iu,nu=t.value,rows=rowsOf(k),num=x=>x.a!==null&&x.a!==''&&!isNaN(x.a);
+  const cross=rows.filter(x=>num(x)&&U[x.u][0]!==U[nu][0]).length;
+  if(cross&&!(await ask(`Change “${k}” to ${nu}? ${cross} amount${cross>1?'s are':' is'} in a different kind of unit (weight, volume or count) that can’t be converted, so the number stays as typed. Check it afterwards.`,'Change unit'))){renderIngs();return}
+  rows.forEach(x=>{if(num(x)&&U[x.u][0]===U[nu][0])x.a=Math.round(x.a*U[x.u][1]/U[nu][1]*1000)/1000;x.u=nu});ingGo()}
+ else if(d.ic!==undefined){rowsOf(d.ic).forEach(x=>{x.t=t.value});ingGo()}});
+$('ilist').addEventListener('focusout',e=>{if(!$('ilist').contains(e.relatedTarget))setTimeout(renderIngs,0)});
+$('iq').oninput=()=>{iq=$('iq').value;renderIngs()};
 $('fq').oninput=renderFridge;
 $('fclear').onclick=()=>{S.fridge={};render()};
+$('sover').onclick=async()=>{if(!(await ask('Start over? This clears your ticked recipes, meal plan, fridge, “Have it” ticks, bought ticks and extra items. Your recipes are kept.','Start over')))return;
+ S.recipes.forEach(r=>{r.on=false});S.extras=[];S.checked={};S.have={};S.haveQty={};S.fridge={};S.plan={};render()};
 $('pclear').onclick=()=>{S.plan={};render()};
 document.addEventListener('toggle',e=>{const t=e.target;if(t.dataset&&t.dataset.day)pOpen[t.dataset.day]=t.open;if(t.dataset&&t.dataset.rd)rOpen[t.dataset.rd]=t.open},true);
 document.addEventListener('change',e=>{const t=e.target,d=t.dataset;
@@ -613,7 +698,7 @@ document.addEventListener('input',e=>{const t=e.target;if(!t.dataset||t.dataset.
 document.addEventListener('change',e=>{const t=e.target;if(!t.dataset)return;
  if(t.dataset.hq!==undefined){haveSet(t);render()}
  else if(t.dataset.hu!==undefined){const inp=t.closest('.hv').querySelector('[data-hq]');haveSet(inp);render()}});
-const VIEWS=['home','recipes','plan','fridge','next','list','add'];
+const VIEWS=['home','recipes','ings','plan','fridge','next','list','add'];
 function show(v){if(!VIEWS.includes(v))v='home';VIEWS.forEach(x=>$('v-'+x).hidden=x!==v);$('crumb').hidden=v==='home';window.scrollTo(0,0)}
 function go(v){location.hash=v==='home'?'':v;show(v)}
 window.addEventListener('hashchange',()=>show(location.hash.slice(1)));
